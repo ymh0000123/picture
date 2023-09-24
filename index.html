@@ -72,9 +72,9 @@
             </div>
         </div>
     </div>
-    <div class="sticky-bottom text-border-subtle ">
+    <div class="sticky-bottom text-border-subtle alert alert-info container pt-5">
         <a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|
-        <a href="https://www.cloudflare.com/"><i class="bi bi-cloud"></i>Cloudflare</a>驱动
+        <a href="https://www.cloudflare.com/"><i class="bi bi-cloud"></i>Cloudflare</a> 驱动
     </div>
 
     <!-- 引入Bootstrap和jQuery脚本 -->
@@ -116,13 +116,13 @@
             if (chineseContent.style.display === 'none') {
                 chineseContent.style.display = 'block';
                 englishContent.style.display = 'none';
-                stickyBottom.innerHTML = '<a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|<a href="https://www.cloudflare.com/"><i class="bi bi-cloud"></i>Cloudflare</a>驱动';
+                stickyBottom.innerHTML = '<a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|<a href="https://www.cloudflare.com/"><i class="bi bi-cloud"></i>Cloudflare</a> 驱动';
                 cnButton.innerText = 'Switch Language';
                 enButton.innerText = '切换语言';
             } else {
                 chineseContent.style.display = 'none';
                 englishContent.style.display = 'block';
-                stickyBottom.innerHTML = '<a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|<a href="https://www.cloudflare.com/><i class="bi bi-cloud"></i>Cloudflare</a>Powered';
+                stickyBottom.innerHTML = '<a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|<a href="https://www.cloudflare.com/><i class="bi bi-cloud"></i>Cloudflare</a> Powered';
                 cnButton.innerText = '切换语言';
                 enButton.innerText = '切换语言';
             }
