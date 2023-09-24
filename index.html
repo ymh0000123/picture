@@ -22,14 +22,29 @@
 </head>
 
 <body>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="cn-qh" class="toast text-bg-info" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body">
+                Language switch successful
+            </div>
+        </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="en-qh" class="toast text-bg-info" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body">
+                语言切换成功
+            </div>
+        </div>
+    </div>
     <div class="container welcome-container">
         <!-- 中文内容 -->
         <div class="chinese-content">
             <h1 class="display-4">欢迎来到我们的网站</h1>
             <p class="lead">我们很高兴您在这里！</p>
             <a href="#" class="btn btn-primary btn-lg">开始</a>
-            <p><div>
-                <button onclick="toggleLanguage()" class="btn btn-secondary"> Switch Language</button>
+            <p>
+            <div>
+                <button onclick="toggleLanguage()" class="btn btn-secondary" id="cnen"> Switch Language</button>
             </div>
         </div>
 
@@ -38,8 +53,9 @@
             <h1 class="display-4">Welcome to Our Website</h1>
             <p class="lead">We're glad you're here!</p>
             <a href="#" class="btn btn-primary btn-lg">Get Started</a>
-            <p><div>
-                <button onclick="toggleLanguage()" class="btn btn-secondary">切换语言</button>
+            <p>
+            <div>
+                <button onclick="toggleLanguage()" class="btn btn-secondary"id="encn">切换语言</button>
             </div>
         </div>
     </div>
@@ -50,6 +66,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
     <script>
+// 初始化所有的 Toast 组件
+var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+var toastList = toastElList.map(function (toastEl) {
+  return new bootstrap.Toast(toastEl);
+});
+
+// 中文按钮点击事件处理程序
+const cnButton = document.getElementById('cnen');
+if (cnButton) {
+    cnButton.addEventListener('click', () => {
+        toastList[0].show(); // 显示第一个 Toast 组件
+    });
+}
+
+// 英文按钮点击事件处理程序
+const enButton = document.getElementById('encn');
+if (enButton) {
+    enButton.addEventListener('click', () => {
+        toastList[1].show(); // 显示第二个 Toast 组件
+    });
+}
+
         // 切换语言函数
         function toggleLanguage() {
             const chineseContent = document.querySelector('.chinese-content');
