@@ -18,6 +18,11 @@
             text-align: center;
             margin-top: 100px;
         }
+
+        .sticky-bottom {
+            text-align: center;
+            margin-top: 100px;
+        }
     </style>
 </head>
 
@@ -55,50 +60,61 @@
             <a href="#" class="btn btn-primary btn-lg">Get Started</a>
             <p>
             <div>
-                <button onclick="toggleLanguage()" class="btn btn-secondary"id="encn">切换语言</button>
+                <button onclick="toggleLanguage()" class="btn btn-secondary" id="encn">切换语言</button>
             </div>
         </div>
     </div>
-
+    <div class="sticky-bottom"><a href="https://github.com/ymh0000123/picture">Github</a>|<a
+            href="https://www.cloudflare.com/">Cloudflare</a>驱动</div>
 
     <!-- 引入Bootstrap和jQuery脚本 -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
     <script>
-// 初始化所有的 Toast 组件
-var toastElList = [].slice.call(document.querySelectorAll('.toast'));
-var toastList = toastElList.map(function (toastEl) {
-  return new bootstrap.Toast(toastEl);
-});
+        // 初始化所有的 Toast 组件
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+        var toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl);
+        });
 
-// 中文按钮点击事件处理程序
-const cnButton = document.getElementById('cnen');
-if (cnButton) {
-    cnButton.addEventListener('click', () => {
-        toastList[0].show(); // 显示第一个 Toast 组件
-    });
-}
+        // 中文按钮点击事件处理程序
+        const cnButton = document.getElementById('cnen');
+        if (cnButton) {
+            cnButton.addEventListener('click', () => {
+                toastList[0].show(); // 显示第一个 Toast 组件
+            });
+        }
 
-// 英文按钮点击事件处理程序
-const enButton = document.getElementById('encn');
-if (enButton) {
-    enButton.addEventListener('click', () => {
-        toastList[1].show(); // 显示第二个 Toast 组件
-    });
-}
+        // 英文按钮点击事件处理程序
+        const enButton = document.getElementById('encn');
+        if (enButton) {
+            enButton.addEventListener('click', () => {
+                toastList[1].show(); // 显示第二个 Toast 组件
+            });
+        }
 
         // 切换语言函数
         function toggleLanguage() {
             const chineseContent = document.querySelector('.chinese-content');
             const englishContent = document.querySelector('.english-content');
+            const stickyBottom = document.querySelector('.sticky-bottom');
+            const cnButton = document.getElementById('cnen');
+            const enButton = document.getElementById('encn');
 
             if (chineseContent.style.display === 'none') {
                 chineseContent.style.display = 'block';
                 englishContent.style.display = 'none';
+                stickyBottom.innerHTML = '<a href="https://github.com/ymh0000123/picture">Github</a>|<a href="https://www.cloudflare.com/">Cloudflare</a>驱动';
+                cnButton.innerText = 'Switch Language';
+                enButton.innerText = '切换语言';
             } else {
                 chineseContent.style.display = 'none';
                 englishContent.style.display = 'block';
+                stickyBottom.innerHTML = '<a href="https://github.com/ymh0000123/picture">Github</a>|<a href="https://www.cloudflare.com/">Cloudflare</a>Powered';
+                cnButton.innerText = '切换语言';
+                enButton.innerText = 'Switch Language';
             }
         }
     </script>
