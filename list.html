@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>文件下载</title>
+  <link rel="shortcut icon" type="image/ico" href="https://mecdn.mcserverx.com/gh/ymh0000123/download-links/main/1.png">
+  <!--使用MDUI-->
+  <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+  <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+  <!-- 引入Bootstrap的CSS库 -->
+  <link href="https://unpkg.com/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 引入Bootstrap的JavaScript库 -->
+  <script src="https://unpkg.com/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://github.moeyy.xyz/https://raw.githubusercontent.com/ymh0000123/Genshin-Impact-Good-words-and-sentences/main/script.js"
+    charset="utf-8"></script>
+  <style>
+    body {
+      font-weight: 500;
+    }
+
+    /* 为导航栏添加上边距 */
+    .mdui-appbar {
+      margin-bottom: 20px;
+      /* 添加适当的上边距，根据需要进行调整 */
+    }
+
+    /* 为卡片添加上边距 */
+    .card {
+      margin-top: 20px;
+      /* 添加适当的上边距，根据需要进行调整 */
+    }
+  </style>
+</head>
+
+<body>
+  <!--导航栏-->
+  <div class="mdui-appbar" mdui-appbar-fixed>
+    <div class="mdui-toolbar mdui-color-indigo">
+      <a class="mdui-btn mdui-btn-icon" id="toggle">
+        <i class="mdui-icon material-icons">menu</i>
+      </a>
+      <a href="#" class="mdui-typo-headline">文件列表</a>
+      <div class="mdui-toolbar-spacer"></div>
+      <div class="mdui-typo-title" id="ys">欲买桂花同载酒...只可惜故人，何日再见呢?</div>
+    </div>
+  </div>
+</body>
+
+<body class="mdui-drawer-body " style="padding-top: 20px;">
+  <div class="mdui-drawer mdui-drawer-close" id="drawer">
+    <ul class="mdui-list">
+      <div class="mdui-card-header">
+        <img class="mdui-card-header-avatar"
+          src="https://mecdn.mcserverx.com/gh/ymh0000123/download-links/main/1.png" />
+        <div class="mdui-card-header-title">没用的小废鼠</div>
+        <div class="mdui-card-header-subtitle">awa</div>
+      </div>
+      <li class="mdui-subheader"><i class="mdui-icon material-icons">link</i>更多</li>
+      <li class="mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
+        <a class="mdui-list-item-content" href="https://ymh0000123.github.io/">主页</a>
+      </li>
+      <li class="mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons">assignment</i>
+        <a class="mdui-list-item-content" href="https://xiaofeishu-boke.netlify.app/">blog</a>
+      </li>
+  </div>
+</body>
+<body>
+  <div class="mdui-col-md-7 mdui-col-offset-md-3">
+    <div class="card">
+      <div class="card-header">
+        <div class="mdui-typo-display-1"><i class="mdui-icon material-icons">view_list</i>文件列表</div>
+      </div>
+      <div class="mdui-table-fluid">
+        <div class="card-body">
+          <table class="mdui-table mdui-table-hoverable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>名称</th>
+                <th>链接(点击跳转)</th>
+              </tr>
+            </thead>
+            <tbody id="fileList">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var $ = mdui.$;
+    var inst = new mdui.Drawer('#drawer');
+
+    // method
+
+    $('#toggle').on('click', function () {
+      inst.toggle();
+    });
+
+  </script>
+<script>
+  // 异步请求远程文件内容
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://xiaofeishu.weie.eu.org/picture/README.md', true);
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var fileContent = xhr.responseText;
+      // 在这里解析文件内容并生成文件列表
+      parseFileContent(fileContent);
+    }
+  };
+
+  xhr.send();
+
+  // 解析文件内容并生成文件列表
+  function parseFileContent(content) {
+    var fileListContainer = document.getElementById("fileList");
+
+    // 在这里解析文件内容，这里假设文件内容是Markdown格式
+    // 实际情况可能需要根据文件内容的格式进行解析
+    // 这里只是一个示例，您需要根据实际情况进行修改
+    var lines = content.split('\n');
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+      if (line !== '') {
+        var parts = line.split('|');
+        if (parts.length === 3) {
+          var row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${parts[0]}</td>
+            <td>${parts[1]}</td>
+            <td><a class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-color-teal" href="${parts[2]}">[GitHub]下载</a></td>
+          `;
+          fileListContainer.appendChild(row);
+        }
+      }
+    }
+  }
+</script>
+</body>
+
+</html>
