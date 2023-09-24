@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <!-- 引入Bootstrap样式 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 自定义CSS样式 -->
+    <style>
+        /* 可以在这里添加自定义的CSS样式 */
+        body {
+            background-color: #f0f0f0;
+        }
+        .welcome-container {
+            text-align: center;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container welcome-container">
+        <!-- 中文内容 -->
+        <div class="chinese-content">
+            <h1 class="display-4">欢迎来到我们的网站</h1>
+            <p class="lead">我们很高兴您在这里！</p>
+            <a href="#" class="btn btn-primary btn-lg">开始</a>
+        </div>
+
+        <!-- 英文内容（默认隐藏） -->
+        <div class="english-content" style="display:none;">
+            <h1 class="display-4">Welcome to Our Website</h1>
+            <p class="lead">We're glad you're here!</p>
+            <a href="#" class="btn btn-primary btn-lg">Get Started</a>
+        </div>
+    </div>
+
+    <!-- 切换语言的按钮 -->
+    <button onclick="toggleLanguage()" class="btn btn-secondary">切换语言 / Switch Language</button>
+
+    <!-- 引入Bootstrap和jQuery脚本 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        // 切换语言函数
+        function toggleLanguage() {
+            const chineseContent = document.querySelector('.chinese-content');
+            const englishContent = document.querySelector('.english-content');
+
+            if (chineseContent.style.display === 'none') {
+                chineseContent.style.display = 'block';
+                englishContent.style.display = 'none';
+            } else {
+                chineseContent.style.display = 'none';
+                englishContent.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
