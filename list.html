@@ -13,7 +13,8 @@
   <link href="https://unpkg.com/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- 引入Bootstrap的JavaScript库 -->
   <script src="https://unpkg.com/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://github.moeyy.xyz/https://raw.githubusercontent.com/ymh0000123/Genshin-Impact-Good-words-and-sentences/main/script.js"
+  <script
+    src="https://github.moeyy.xyz/https://raw.githubusercontent.com/ymh0000123/Genshin-Impact-Good-words-and-sentences/main/script.js"
     charset="utf-8"></script>
   <style>
     body {
@@ -68,27 +69,30 @@
       </li>
   </div>
 </body>
+
 <body>
   <div class="mdui-col-md-7 mdui-col-offset-md-3">
     <div class="card">
       <div class="card-header">
         <div class="mdui-typo-display-1"><i class="mdui-icon material-icons">view_list</i>文件列表</div>
       </div>
-      <div class="mdui-table-fluid">
-        <div class="card-body">
-          <table class="mdui-table mdui-table-hoverable">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>名称</th>
-                <th>链接(点击跳转)</th>
-              </tr>
-            </thead>
-            <tbody id="fileList">
-            </tbody>
-          </table>
-        </div>
+      <div class="mdui-container">
+        <table class="mdui-table mdui-table-hoverable" id="dynamic-table">
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>文件名</th>
+              <th>下载链接</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ul class="mdui-list" id="dynamic-list">
+              <!-- 动态列表将在这里生成 -->
+            </ul>
+          </tbody>
+        </table>
       </div>
+
     </div>
   </div>
   <script>
@@ -103,44 +107,40 @@
 
   </script>
 <script>
-  // 异步请求远程文件内容
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://xiaofeishu.weie.eu.org/picture/README.md', true);
+  // 使用JavaScript来获取README.md文件内容并生成动态列表
+  const dynamicTable = document.getElementById("dynamic-table").getElementsByTagName('tbody')[0];
 
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var fileContent = xhr.responseText;
-      // 在这里解析文件内容并生成文件列表
-      parseFileContent(fileContent);
-    }
-  };
+  // 发送HTTP请求获取README.md文件内容
+  fetch("https://xiaofeishu.weie.eu.org/picture/README.md")
+      .then(response => response.text())
+      .then(data => {
+          // 使用正则表达式来解析表格行
+          const tableRows = data.match(/\|(.+?)\|(.+?)\|\s*\[下载\]\((.+?)\)\s*\|/g);
 
-  xhr.send();
+          // 遍历匹配到的行并将数据添加到表格中
+          if (tableRows) {
+              tableRows.forEach(row => {
+                  const rowData = row.match(/\|(.+?)\|(.+?)\|\s*\[下载\]\((.+?)\)\s*\|/);
 
-  // 解析文件内容并生成文件列表
-  function parseFileContent(content) {
-    var fileListContainer = document.getElementById("fileList");
+                  if (rowData) {
+                      const [_, index, fileName, downloadLink] = rowData;
+                      // 创建表格行
+                      const tableRow = dynamicTable.insertRow();
+                      // 创建并添加表格单元格
+                      const cell1 = tableRow.insertCell(0);
+                      const cell2 = tableRow.insertCell(1);
+                      const cell3 = tableRow.insertCell(2);
 
-    // 在这里解析文件内容，这里假设文件内容是Markdown格式
-    // 实际情况可能需要根据文件内容的格式进行解析
-    // 这里只是一个示例，您需要根据实际情况进行修改
-    var lines = content.split('\n');
-    for (var i = 0; i < lines.length; i++) {
-      var line = lines[i].trim();
-      if (line !== '') {
-        var parts = line.split('|');
-        if (parts.length === 3) {
-          var row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${parts[0]}</td>
-            <td>${parts[1]}</td>
-            <td><a class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-color-teal" href="${parts[2]}">[GitHub]下载</a></td>
-          `;
-          fileListContainer.appendChild(row);
-        }
-      }
-    }
-  }
+                      cell1.textContent = index.trim();
+                      cell2.textContent = fileName.trim();
+                      cell3.innerHTML = `<a href="${downloadLink.trim()}" target="_blank">下载</a>`;
+                  }
+              });
+          }
+      })
+      .catch(error => {
+          console.error("无法获取文件内容:", error);
+      });
 </script>
 </body>
 
