@@ -22,6 +22,13 @@
         .sticky-bottom {
             text-align: center;
             margin-top: 100px;
+            color: #0dcaf0;
+        }
+
+        div.sticky-bottom a {
+            color: #0dcaf0;
+            text-decoration: none;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -64,8 +71,10 @@
             </div>
         </div>
     </div>
-    <div class="sticky-bottom"><a href="https://github.com/ymh0000123/picture">Github</a>|<a
-            href="https://www.cloudflare.com/">Cloudflare</a>驱动</div>
+    <div class="sticky-bottom text-border-subtle ">
+        <a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|
+        <a href="https://www.cloudflare.com/"><i class="bi bi-cloud"></i>Cloudflare</a>驱动
+    </div>
 
     <!-- 引入Bootstrap和jQuery脚本 -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
@@ -106,15 +115,15 @@
             if (chineseContent.style.display === 'none') {
                 chineseContent.style.display = 'block';
                 englishContent.style.display = 'none';
-                stickyBottom.innerHTML = '<a href="https://github.com/ymh0000123/picture">Github</a>|<a href="https://www.cloudflare.com/">Cloudflare</a>驱动';
+                stickyBottom.innerHTML = '<a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|<a href="https://www.cloudflare.com/"><i class="bi bi-cloud"></i>Cloudflare</a>驱动';
                 cnButton.innerText = 'Switch Language';
                 enButton.innerText = '切换语言';
             } else {
                 chineseContent.style.display = 'none';
                 englishContent.style.display = 'block';
-                stickyBottom.innerHTML = '<a href="https://github.com/ymh0000123/picture">Github</a>|<a href="https://www.cloudflare.com/">Cloudflare</a>Powered';
+                stickyBottom.innerHTML = '<a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|<a href="https://www.cloudflare.com/><i class="bi bi-cloud"></i>Cloudflare</a>Powered';
                 cnButton.innerText = '切换语言';
-                enButton.innerText = 'Switch Language';
+                enButton.innerText = '切换语言';
             }
         }
     </script>
