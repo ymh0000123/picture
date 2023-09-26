@@ -104,7 +104,7 @@
     const dynamicTable = document.getElementById("dynamic-table").getElementsByTagName('tbody')[0];
 
     // 发送HTTP请求获取README.md文件内容
-    fetch("https://xiaofeishu.weie.eu.org/picture/README.md")
+    fetch("list.md")
       .then(response => response.text())
       .then(data => {
         // 使用正则表达式来解析表格行
