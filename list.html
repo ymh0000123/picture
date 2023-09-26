@@ -24,13 +24,6 @@
     /* 为导航栏添加上边距 */
     .mdui-appbar {
       margin-bottom: 20px;
-      /* 添加适当的上边距，根据需要进行调整 */
-    }
-
-    /* 为卡片添加上边距 */
-    .card {
-      margin-top: 20px;
-      /* 添加适当的上边距，根据需要进行调整 */
     }
   </style>
 </head>
@@ -106,42 +99,42 @@
     });
 
   </script>
-<script>
-  // 使用JavaScript来获取README.md文件内容并生成动态列表
-  const dynamicTable = document.getElementById("dynamic-table").getElementsByTagName('tbody')[0];
+  <script>
+    // 使用JavaScript来获取README.md文件内容并生成动态列表
+    const dynamicTable = document.getElementById("dynamic-table").getElementsByTagName('tbody')[0];
 
-  // 发送HTTP请求获取README.md文件内容
-  fetch("https://xiaofeishu.weie.eu.org/picture/README.md")
+    // 发送HTTP请求获取README.md文件内容
+    fetch("https://xiaofeishu.weie.eu.org/picture/README.md")
       .then(response => response.text())
       .then(data => {
-          // 使用正则表达式来解析表格行
-          const tableRows = data.match(/\|(.+?)\|(.+?)\|\s*\[下载\]\((.+?)\)\s*\|/g);
+        // 使用正则表达式来解析表格行
+        const tableRows = data.match(/\|(.+?)\|(.+?)\|\s*\[下载\]\((.+?)\)\s*\|/g);
 
-          // 遍历匹配到的行并将数据添加到表格中
-          if (tableRows) {
-              tableRows.forEach(row => {
-                  const rowData = row.match(/\|(.+?)\|(.+?)\|\s*\[下载\]\((.+?)\)\s*\|/);
+        // 遍历匹配到的行并将数据添加到表格中
+        if (tableRows) {
+          tableRows.forEach(row => {
+            const rowData = row.match(/\|(.+?)\|(.+?)\|\s*\[下载\]\((.+?)\)\s*\|/);
 
-                  if (rowData) {
-                      const [_, index, fileName, downloadLink] = rowData;
-                      // 创建表格行
-                      const tableRow = dynamicTable.insertRow();
-                      // 创建并添加表格单元格
-                      const cell1 = tableRow.insertCell(0);
-                      const cell2 = tableRow.insertCell(1);
-                      const cell3 = tableRow.insertCell(2);
+            if (rowData) {
+              const [_, index, fileName, downloadLink] = rowData;
+              // 创建表格行
+              const tableRow = dynamicTable.insertRow();
+              // 创建并添加表格单元格
+              const cell1 = tableRow.insertCell(0);
+              const cell2 = tableRow.insertCell(1);
+              const cell3 = tableRow.insertCell(2);
 
-                      cell1.textContent = index.trim();
-                      cell2.textContent = fileName.trim();
-                      cell3.innerHTML = `<a href="${downloadLink.trim()}" target="_blank" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-color-teal">下载</a>`;
-                  }
-              });
-          }
+              cell1.textContent = index.trim();
+              cell2.textContent = fileName.trim();
+              cell3.innerHTML = `<a href="${downloadLink.trim()}" target="_blank" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-color-teal">下载</a>`;
+            }
+          });
+        }
       })
       .catch(error => {
-          console.error("无法获取文件内容:", error);
+        console.error("无法获取文件内容:", error);
       });
-</script>
+  </script>
 </body>
 
 </html>
