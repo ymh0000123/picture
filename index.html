@@ -74,7 +74,7 @@
             <div class="chinese-content">
                 <h1 class="display-4 e68536">欢迎来到我们的网站</h1>
                 <p class="lead e68536">我们很高兴您在这里！</p>
-                <p  class="lead e68536" id="info"></p>
+                
                 <a href="./picture/index.html" class="btn btn-info">图片列表</a>
                 <p>
                 <div>
@@ -94,7 +94,9 @@
             </div>
         </div>
     </div>
+    
     <div class="sticky-bottom text-border-subtle alert alert-info container pt-5">
+        <p id="info"></p>
         <a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|
         <a href="https://www.cloudflare.com/"><i class="bi bi-cloud"></i>Cloudflare</a>|<a
             href="https://www.netlify.com/"><i class="bi bi-server"></i>netlify</a> 驱动
@@ -151,19 +153,24 @@
             }
         }
     </script>
-    <script>
-        // 使用JavaScript获取当前网站的域名
-        var domainName = window.location.hostname;
+<script>
+    // 使用JavaScript获取当前网站的域名
+    var domainName = window.location.hostname;
+    var infoElement = document.getElementById("info");
 
         // 检查域名中的特定字符串来确定访问的是哪个服务
         if (domainName.includes("ymh0000123.github.io")) {
             document.getElementById("info").innerHTML = "你正在使用 GitHub Pages 访问。";
+            infoElement.style.color = "black";
         } else if (domainName.includes("xiaofeishu.weie.eu.org")) {
             document.getElementById("info").innerHTML = "你正在使用 Cloudflare 访问。";
+            infoElement.style.color = "orange";
         } else if (domainName.includes("xiaofeishu-picture.netlify.app")) {
             document.getElementById("info").innerHTML = "你正在使用 netlify 访问。";
+            infoElement.style.color = "cyan";
         } else {
             document.getElementById("info").innerHTML = "未知服务。";
+            infoElement.style.color = "red";
         }
     </script>
 </body>
