@@ -33,7 +33,12 @@
         }
 
         .e68536 {
-            color:#e68536
+            color: #e68536
+        }
+
+        .card {
+            margin-top: 20px;
+            /* 添加适当的上边距，根据需要进行调整 */
         }
 
         .bg-image {
@@ -54,7 +59,7 @@
 </head>
 
 <body>
-    <div class="toast-container position-fixed bottom-0 end-0 p-3" >
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="cn-qh" class="toast text-bg-info" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-body">
                 Language switch successful
@@ -74,7 +79,7 @@
             <div class="chinese-content">
                 <h1 class="display-4 e68536">欢迎来到我们的网站</h1>
                 <p class="lead e68536">我们很高兴您在这里！</p>
-                
+
                 <a href="./picture/index.html" class="btn btn-info">图片列表</a>
                 <p>
                 <div>
@@ -94,85 +99,111 @@
             </div>
         </div>
     </div>
-    
-    <div class="sticky-bottom text-border-subtle alert alert-info container pt-5">
-        <p id="info"></p>
-        <a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|
-        <a href="https://www.cloudflare.com/"><i class="bi bi-cloud"></i>Cloudflare</a>|<a
-            href="https://www.netlify.com/"><i class="bi bi-server"></i>netlify</a> 驱动
-    </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#all">所有 Pages</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div id="home" class="container tab-pane active"><br>
+                        <h3>HOME</h3>
+                        <p>这是普通的图片列表</p>
+                    </div>
+                    <div id="all" class="container tab-pane fade"><br>
+                        <h3>所有 Pages</h3>
+                        <a class="btn btn-dark" href="https://ymh0000123.github.io/picture/" role="button">GitHub Pages</a>
+                        <a class="btn btn-warning" href="https://xiaofeishu.weie.eu.org" role="button">Cloudflare Pages</a>
+                        <a class="btn btn-info" href="https://xiaofeishu-picture.netlify.app" role="button">netlify</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sticky-bottom text-border-subtle alert alert-info container pt-5">
+            <p id="info"></p>
+            <a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|
+            <a href="https://www.cloudflare.com/"><i class="bi bi-cloud"></i>Cloudflare</a>|<a
+                href="https://www.netlify.com/"><i class="bi bi-server"></i>netlify</a> 驱动
+        </div>
 
-    <!-- 引入Bootstrap和jQuery脚本 -->
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+        <!-- 引入Bootstrap和jQuery脚本 -->
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://unpkg.com/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
-    <script>
-        // 初始化所有的 Toast 组件
-        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
-        var toastList = toastElList.map(function (toastEl) {
-            return new bootstrap.Toast(toastEl);
-        });
-
-        // 中文按钮点击事件处理程序
-        const cnButton = document.getElementById('cnen');
-        if (cnButton) {
-            cnButton.addEventListener('click', () => {
-                toastList[0].show(); // 显示第一个 Toast 组件
+        <script>
+            // 初始化所有的 Toast 组件
+            var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+            var toastList = toastElList.map(function (toastEl) {
+                return new bootstrap.Toast(toastEl);
             });
-        }
 
-        // 英文按钮点击事件处理程序
-        const enButton = document.getElementById('encn');
-        if (enButton) {
-            enButton.addEventListener('click', () => {
-                toastList[1].show(); // 显示第二个 Toast 组件
-            });
-        }
-
-        // 切换语言函数
-        function toggleLanguage() {
-            const chineseContent = document.querySelector('.chinese-content');
-            const englishContent = document.querySelector('.english-content');
-            const stickyBottom = document.querySelector('.sticky-bottom');
+            // 中文按钮点击事件处理程序
             const cnButton = document.getElementById('cnen');
-            const enButton = document.getElementById('encn');
-
-            if (chineseContent.style.display === 'none') {
-                chineseContent.style.display = 'block';
-                englishContent.style.display = 'none';
-                stickyBottom.innerHTML = '<a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|<a href="https://www.cloudflare.com/"><i class="bi bi-cloud"></i>Cloudflare</a>|<a href="https://www.netlify.com/"><i class="bi bi-server"></i>netlify</a> 驱动';
-                cnButton.innerText = 'Switch Language';
-                enButton.innerText = '切换语言';
-            } else {
-                chineseContent.style.display = 'none';
-                englishContent.style.display = 'block';
-                stickyBottom.innerHTML = '<a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|<a href="https://www.cloudflare.com/><i class="bi bi-cloud"></i>Cloudflare</a>|<a href="https://www.netlify.com/"><i class="bi bi-server"></i>netlify</a>Powered';
-                cnButton.innerText = '切换语言';
-                enButton.innerText = '切换语言';
+            if (cnButton) {
+                cnButton.addEventListener('click', () => {
+                    toastList[0].show(); // 显示第一个 Toast 组件
+                });
             }
-        }
-    </script>
-<script>
-    // 使用JavaScript获取当前网站的域名
-    var domainName = window.location.hostname;
-    var infoElement = document.getElementById("info");
 
-        // 检查域名中的特定字符串来确定访问的是哪个服务
-        if (domainName.includes("ymh0000123.github.io")) {
-            document.getElementById("info").innerHTML = "你正在使用 GitHub Pages 访问。";
-            infoElement.style.color = "black";
-        } else if (domainName.includes("xiaofeishu.weie.eu.org")) {
-            document.getElementById("info").innerHTML = "你正在使用 Cloudflare 访问。";
-            infoElement.style.color = "orange";
-        } else if (domainName.includes("xiaofeishu-picture.netlify.app")) {
-            document.getElementById("info").innerHTML = "你正在使用 netlify 访问。";
-            infoElement.style.color = "cyan";
-        } else {
-            document.getElementById("info").innerHTML = "未知服务。";
-            infoElement.style.color = "red";
-        }
-    </script>
+            // 英文按钮点击事件处理程序
+            const enButton = document.getElementById('encn');
+            if (enButton) {
+                enButton.addEventListener('click', () => {
+                    toastList[1].show(); // 显示第二个 Toast 组件
+                });
+            }
+
+            // 切换语言函数
+            function toggleLanguage() {
+                const chineseContent = document.querySelector('.chinese-content');
+                const englishContent = document.querySelector('.english-content');
+                const stickyBottom = document.querySelector('.sticky-bottom');
+                const cnButton = document.getElementById('cnen');
+                const enButton = document.getElementById('encn');
+
+                if (chineseContent.style.display === 'none') {
+                    chineseContent.style.display = 'block';
+                    englishContent.style.display = 'none';
+                    stickyBottom.innerHTML = '<a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|<a href="https://www.cloudflare.com/"><i class="bi bi-cloud"></i>Cloudflare</a>|<a href="https://www.netlify.com/"><i class="bi bi-server"></i>netlify</a> 驱动';
+                    cnButton.innerText = 'Switch Language';
+                    enButton.innerText = '切换语言';
+                } else {
+                    chineseContent.style.display = 'none';
+                    englishContent.style.display = 'block';
+                    stickyBottom.innerHTML = '<a href="https://github.com/ymh0000123/picture"><i class="bi bi-github"></i>Github</a>|<a href="https://www.cloudflare.com/><i class="bi bi-cloud"></i>Cloudflare</a>|<a href="https://www.netlify.com/"><i class="bi bi-server"></i>netlify</a>Powered';
+                    cnButton.innerText = '切换语言';
+                    enButton.innerText = '切换语言';
+                }
+            }
+        </script>
+        <script>
+            // 使用JavaScript获取当前网站的域名
+            var domainName = window.location.hostname;
+            var infoElement = document.getElementById("info");
+
+            // 检查域名中的特定字符串来确定访问的是哪个服务
+            if (domainName.includes("ymh0000123.github.io")) {
+                document.getElementById("info").innerHTML = "你正在使用 GitHub Pages 访问。";
+                infoElement.style.color = "black";
+            } else if (domainName.includes("xiaofeishu.weie.eu.org")) {
+                document.getElementById("info").innerHTML = "你正在使用 Cloudflare Pages 访问。";
+                infoElement.style.color = "orange";
+            } else if (domainName.includes("xiaofeishu-picture.netlify.app")) {
+                document.getElementById("info").innerHTML = "你正在使用 netlify 访问。";
+                infoElement.style.color = "cyan";
+            } else {
+                document.getElementById("info").innerHTML = "未知域名"+domainName;
+                infoElement.style.color = "red";
+            }
+        </script>
 </body>
 
 </html>
