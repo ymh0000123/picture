@@ -10,7 +10,7 @@ files = os.listdir(current_directory)
 image_files = []
 
 # 遍历所有文件，筛选出图片文件
-for i, file in enumerate(files, start=0):
+for i, file in enumerate(files, start=1):
     # 检查文件扩展名以确定是否为图片文件
     if file.endswith(".jpg") or file.endswith(".png") or file.endswith(".gif"):
         # 提取不包含扩展名的文件名作为名称
