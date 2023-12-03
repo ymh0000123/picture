@@ -1,1 +1,3 @@
-@python generate_image_list.py
+@echo off
+python generate_image_list.py
+pause

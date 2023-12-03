@@ -30,5 +30,7 @@ with open("list.md", "w", encoding="utf-8") as md_file:
 
 if image_files:
     print("已生成图片列表到 list.md 文件")
+    print("现在可以打开 list.md 文件查看")
+    print("\n".join(image_files))
 else:
     print("当前目录下没有图片文件")
