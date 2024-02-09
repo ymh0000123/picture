@@ -11,5 +11,6 @@
 | 9   | A17F5B9CA34E59B54705B5EC1FA46DAC      | [下载](./A17F5B9CA34E59B54705B5EC1FA46DAC.png) |
 | 10   | bj      | [下载](./bj.png) |
 | 12   | ico      | [下载](./ico.png) |
-| 15   | OP_s      | [下载](./OP_s.webp) |
-| 17   | 原神_温迪_mc      | [下载](./原神_温迪_mc.png) |
+| 15   | ly      | [下载](./ly.png) |
+| 16   | OP_s      | [下载](./OP_s.webp) |
+| 18   | wd      | [下载](./wd.png) |
